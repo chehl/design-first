@@ -1,0 +1,815 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Chameleon API",
+      "description": "This is the API of the project Chameleon.",
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5555",
+        "description": "Generated server url"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Location",
+        "description": "Location API"
+      }
+    ],
+    "paths": {
+      "/api/v1/locations": {
+        "get": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Get all locations",
+          "description": "This operations returns all operations.",
+          "operationId": "getLocations",
+          "responses": {
+            "200": {
+              "description": "Successfully returned all locations",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/LocationDto"
+                    }
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Add new location",
+          "description": "This operation adds a new location.",
+          "operationId": "addLocation",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddLocationDto"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully added a new location",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LocationDto"
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Updates a location (partially or fully)",
+          "description": "This operation updates a location (partially or fully).",
+          "operationId": "patchLocation",
+          "parameters": [
+            {
+              "name": "If-Match",
+              "in": "header",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchLocationDto"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated the provided location (partially or fully)",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LocationDto"
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/locations/{id}": {
+        "get": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Get location by id",
+          "description": "This operation returns a location by id.",
+          "operationId": "getLocationById",
+          "parameters": [
+            {
+              "name": "If-None-Match",
+              "in": "header",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully returned the location with the specified id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LocationDto"
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Delete location by id",
+          "description": "This operation deletes a location by id.",
+          "operationId": "deleteLocationById",
+          "parameters": [
+            {
+              "name": "If-Match",
+              "in": "header",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Successfully deleted the location with the specified id"
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/locations/{id}/distanceto/{otherId}": {
+        "get": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Calculates the distance in kilometers between two locations",
+          "description": "This operation calculates the distance in kilometers between two locations.",
+          "operationId": "getDistance",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            },
+            {
+              "name": "otherId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully calculated the distance in kilometers between two provided locations",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": "Not Modified"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Location not found",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Resource conflict",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "412": {
+              "description": "Precondition Failed",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Name not unique",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiErrorDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "ApiErrorDto": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "error message",
+              "example": "An error occurred!"
+            },
+            "errors": {
+              "type": "array",
+              "description": "errors",
+              "example": [
+                "error1",
+                "error2"
+              ],
+              "items": {
+                "type": "string",
+                "description": "errors",
+                "example": "[\"error1\",\"error2\"]"
+              }
+            }
+          }
+        },
+        "AddLocationDto": {
+          "required": [
+            "address",
+            "latitude",
+            "longitude",
+            "name"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "maxLength": 2147483647,
+              "minLength": 1,
+              "type": "string",
+              "description": "name of the location",
+              "example": "ConSol Munich"
+            },
+            "address": {
+              "type": "string",
+              "description": "address of the location",
+              "example": "ConSol Software GmbH\nSt.-Cajetan-Straße 43\n81669 Munich\nGermany\n"
+            },
+            "latitude": {
+              "maximum": 90,
+              "exclusiveMaximum": false,
+              "minimum": -90,
+              "exclusiveMinimum": false,
+              "type": "number",
+              "description": "latitude of the location",
+              "example": 48.12062720351421
+            },
+            "longitude": {
+              "maximum": 180,
+              "exclusiveMaximum": false,
+              "minimum": -180,
+              "exclusiveMinimum": false,
+              "type": "number",
+              "description": "longitude of the location",
+              "example": 11.602475161693459
+            }
+          }
+        },
+        "LocationDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "id of the location",
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            },
+            "name": {
+              "type": "string",
+              "description": "name of the location",
+              "example": "ConSol Munich"
+            },
+            "address": {
+              "type": "string",
+              "description": "address of the location",
+              "example": "ConSol Software GmbH\nSt.-Cajetan-Straße 43\n81669 Munich\nGermany\n"
+            },
+            "latitude": {
+              "type": "number",
+              "description": "latitude of the location",
+              "example": 48.12062720351421
+            },
+            "longitude": {
+              "type": "number",
+              "description": "longitude of the location",
+              "example": 11.602475161693459
+            },
+            "etag": {
+              "type": "string"
+            }
+          }
+        },
+        "PatchLocationDto": {
+          "required": [
+            "id"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "id of the location",
+              "example": "c874656b-7906-42d5-bcb0-23a9aba6b56d"
+            },
+            "name": {
+              "maxLength": 2147483647,
+              "minLength": 1,
+              "type": "string",
+              "description": "name of the location",
+              "example": "ConSol Munich"
+            },
+            "address": {
+              "type": "string",
+              "description": "address of the location",
+              "example": "ConSol Software GmbH\nSt.-Cajetan-Straße 43\n81669 Munich\nGermany\n"
+            },
+            "latitude": {
+              "maximum": 90,
+              "exclusiveMaximum": false,
+              "minimum": -90,
+              "exclusiveMinimum": false,
+              "type": "number",
+              "description": "latitude of the location",
+              "example": 48.12062720351421
+            },
+            "longitude": {
+              "maximum": 180,
+              "exclusiveMaximum": false,
+              "minimum": -180,
+              "exclusiveMinimum": false,
+              "type": "number",
+              "description": "longitude of the location",
+              "example": 11.602475161693459
+            }
+          }
+        }
+      }
+    }
+  }
