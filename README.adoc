@@ -1,0 +1,3 @@
+This is a prototype for RESTful API development with a design-first approach using Sprint Boot 3.
+
+Copyright (c) 2023 Christoph Ehlers, ConSol Software GmbH
